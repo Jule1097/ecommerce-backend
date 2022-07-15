@@ -4,6 +4,7 @@ import pkg from "../package.json";
 
 import { createRoles } from "./libs/initialSetup";
 
+
 import productsRoutes from "./routes/products.routes";
 import authRoutes from "./routes/auth.routes";
 import usersRoutes from "./routes/user.routes";
@@ -25,8 +26,13 @@ app.get("/", (req, res) => {
   });
 });
 
+const cors = require('cors');
+app.use(cors())
+
 app.use("/api/products", productsRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/users", usersRoutes);
 
+
 export default app;
+
