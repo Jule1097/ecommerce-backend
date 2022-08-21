@@ -1,15 +1,13 @@
 import {Schema, model} from "mongoose";
 
-const productSchema = new Schema ({
+const orderSchema = new Schema ({
     name: String,
     price: Number,
-    image: String,
-    stock: Number,
-    category: String,
+    _id: String,
     quantity: Number
 },{
   timestamps: true,
   versionKey: false  
 })
 
-export default model('Product', productSchema);
+export default model('Order', orderSchema);
