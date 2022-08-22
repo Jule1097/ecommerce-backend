@@ -39,20 +39,29 @@ app.get("/", (req, res) => {
 
 app.get("/api/orders", (req, res) => {
 
-  console.log(order)
-
   res.json({
-    items: order.map(({ name, price, _id }) => ({
+    items: order[0].map(({ name, price, _id, quantity }) => ({
       name,
       price,
       _id,
-      
+      quantity
     })),
-    date: "",
-    buyer: "",
-    taxes: 0,
-    total: 0
   });
+
+  const countItems = order.filter(e => e.name)
+
+  const firstPrice = Object.values(countItems).reduce((acc , {price}) => acc + price, 0)
+
+  const taxes = firstPrice * 0.21;
+
+  const total = firstPrice + taxes
+
+  const date = new Date().toLocaleString();
+
+  order.taxes = taxes;
+  order.total = total;
+  order.date = date;
+
 });
 
 const order = [];
@@ -60,9 +69,8 @@ const order = [];
 app.post("/api/orders", (req, res) => {
   const orders = req.body;
 
-  const items = orders.find((e => e.name && e.price && e._id));
-
-  order.push(items)
+  order.push(orders)
+  
 });
 
 app.use(cors());
