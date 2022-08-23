@@ -38,23 +38,28 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/orders", (req, res) => {
-
   res.json({
     items: order[0].map(({ name, price, _id, quantity }) => ({
       name,
       price,
       _id,
-      quantity
+      quantity,
     })),
+    date: order.date,
+    taxes: order.taxes,
+    total: order.total,
   });
 
-  const countItems = order.filter(e => e.name)
+  const countItems = order[0].filter((e) => e.name);
 
-  const firstPrice = Object.values(countItems).reduce((acc , {price}) => acc + price, 0)
+  const firstPrice = Object.values(countItems).reduce(
+    (acc, { price }) => acc + price,
+    0
+  );
 
   const taxes = firstPrice * 0.21;
 
-  const total = firstPrice + taxes
+  const total = firstPrice + taxes;
 
   const date = new Date().toLocaleString();
 
@@ -69,8 +74,7 @@ const order = [];
 app.post("/api/orders", (req, res) => {
   const orders = req.body;
 
-  order.push(orders)
-  
+  order.push(orders);
 });
 
 app.use(cors());
