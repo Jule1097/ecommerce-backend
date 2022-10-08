@@ -1,10 +1,16 @@
 import {Schema, model} from "mongoose";
 
 const orderSchema = new Schema ({
+  items: [{
     name: String,
     price: Number,
-    _id: String,
-    quantity: Number
+    quantity: Number,
+    _id: false
+  }],
+  subtotal: Number,
+  taxes: Number,
+  total: Number,
+  date: Date
 },{
   timestamps: true,
   versionKey: false  

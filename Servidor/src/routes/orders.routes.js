@@ -1,17 +1,9 @@
 import { Router } from "express";
 const router = Router();
-const orderSchema = require('../models/Order')
+import * as orderCtrl from '../controllers/orders.controller';
 
-router.post('/api/orders', (req, res) => {
-    const order = orderSchema(req.body);
-    order.save()
-    .then((data)=> res.json(data));
-});
+router.post('/', orderCtrl.addOrder);
 
-router.get('/api/orders', (req, res) => {
-    orderSchema
-    .find()
-    .then((data)=> res.json(data));   
-});
+router.get('/', orderCtrl.getOrders);
 
 export default router;
