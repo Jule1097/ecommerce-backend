@@ -55,6 +55,6 @@ export const logIn = async (req, res) => {
   });
 
   if (userFound && matchPassword) {
-    res.send({ token });
-  }
+    res.send({ token, message: "Logged In" });
+  } 
 };
