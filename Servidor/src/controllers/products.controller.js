@@ -8,7 +8,9 @@ export const createProduct = async (req, res) => {
   const productSaved = await newProduct.save();
 
   // new Product created
-  res.status(201).json(productSaved);
+  res.status(201).json({message: "Product Created", productSaved});
+
+  console.log(req.body)
 };
 
 export const getProducts = async (req, res) => {
