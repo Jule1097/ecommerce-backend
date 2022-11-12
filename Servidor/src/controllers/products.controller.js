@@ -31,7 +31,8 @@ export const updateProductById = async (req, res) => {
       new: true,
     }
   );
-  res.status(200).json(updatedProduct);
+  res.status(200).json({message: "Updated", updatedProduct});
+  console.log(req.body)
 };
 export const deleteProductById = async (req, res) => {
   const { productId } = req.params;
