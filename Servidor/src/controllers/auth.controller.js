@@ -55,6 +55,7 @@ export const logIn = async (req, res) => {
   });
 
   if (userFound && matchPassword) {
-    res.send({ token, message: "Logged In" });
+    const userRole = userFound.roles
+    res.send({ token, userRole, message: "Logged In" });
   } 
 };
