@@ -8,6 +8,8 @@ import ordersRoutes from "./routes/orders.routes";
 import productsRoutes from "./routes/products.routes";
 import authRoutes from "./routes/auth.routes";
 import usersRoutes from "./routes/user.routes";
+import permissionsRoutes from './routes/permissions.routes';
+
 const app = express();
 var bodyParser = require("body-parser");
 
@@ -15,7 +17,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 const cors = require("cors");
-
 
 createRoles();
 
@@ -50,5 +51,6 @@ app.use("/api/products", productsRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/users", usersRoutes);
 app.use("/api/orders", ordersRoutes);
+app.use("/api/rolepermissions", permissionsRoutes)
 
 export default app;
